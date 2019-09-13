@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: content: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <script src="components/loader.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.js"></script>
+    <script src="js/sns_timeline_my.js"></script>
+    <script src="js/sns_like-online_my.js"></script>
+    
+    <link rel="stylesheet" href="components/loader.css">
+    <link rel="stylesheet" href="css/onsen-css-components_pink.css">
+    <link rel="stylesheet" href="css/sns.css">
+    <link rel="stylesheet" href="css/like.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/timeline.css">
+
+<script>
+$(function() {
+    var feedUrl = "";
+
+    var application_key = "9ab1de2d32e27a7915ea548af8763e5944cab345cf86efeedbcaf173e4892d99";
+    var client_key      = "3153af5772f1f5567f6ae573041d48ec94ae7c1c1ce8fa8af0a1cbfbea000e1e";
+    
+    // お気に入りクラスを定義します
+    // 内容は www/js/sns_like-online_my.js になります
+    var like = new Like({
+        applicationKey: application_key,
+        clientKey: client_key
+    });
+
+    var feed = new MyTimeline({
+        url: feedUrl,      // カンマの追加を忘れずに
+        like: like // 追加
+    });
+    
+    feed.load();
+
+});
+</script>
+
+</head>
+<body>
+    <ons-page>
+    <div class="page__background" style="background-color: #fff0f5"></div>
+
+        <!-- ツールバー -->
+        <ons-toolbar>
+            <div class="left">
+                <ons-back-button onclick="backTo()">
+                    Back
+                </ons-back-button>            
+            </div>
+            <div class="center">
+                SNS
+            </div>
+        </ons-toolbar>
+        
+        
+        <!-- 中身 -->
+    <div style="margin: 6px;">
+        <ons-icon icon="fa-trash-o" size="26px"></ons-icon>をタップすると投稿が削除できます。
+    </div>
+      
+    <div id="mask">
+        <div id="loading"><img src="img/loading.gif"></div>
+    </div>
+        <div>
+            <ons-list class="timeline" modifier="inset" id="contents">
+            </ons-list>
+        </div>
+    </ons-page>
+    <p id="error-message"></p>
+<script>
+    //back
+    backTo = function (){
+        history.back();
+    }
+    //post
+    post = function(){
+        document.location.href="sns_post.html"
+    }
+</script>
+    
+</body>
+</html>

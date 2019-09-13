@@ -1,0 +1,150 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: content: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <script src="components/loader.js"></script>
+    <link rel="stylesheet" href="components/loader.css">
+    <link rel="stylesheet" href="css/onsen-css-components_pink.css">
+    
+</head>
+<body>
+    <ons-page>
+    <div class="page__background" style="background-color: #fff0f5"></div>
+
+        <!-- ツールバー -->
+        <ons-toolbar>
+            <div class="left" style="padding-left: 8px;">
+                <ons-back-button onclick="goBack()">Back</ons-back-button>
+            </div>
+            <div class="center">
+                設定
+            </div>
+        </ons-toolbar>
+        
+        <!-- 中身 -->
+        <div style="padding-left: 8px; padding-right: 8px;">
+             <p style="text-align: center;"><b>応援メッセージ表示設定</b></p>
+            
+            <!-- schedule -->
+            <h4 class="section" style="text-align: center;">メッセージ表示</h4>
+            <div class="container" style="text-align: center;">
+                <ons-button onclick="scheduleMinutely()">セット</ons-button>
+                <div>
+                    <small>
+                        セットボタンを押すと1時間おきに<br />
+                        同じメッセージが繰り返し表示されます。
+                    </small>
+                </div>
+            </div>
+            <!-- cancel -->
+            <h4 class="section" style="text-align: center;">設定をクリア</h4>
+             
+            <div class="container" style="text-align: center;">
+                <ons-button onclick="cancelAll()">キャンセル</ons-button>
+                <div>
+                    <small>
+                        キャンセルボタンを押すと表示が止まります。
+                    </small>
+                </div>
+            </div>
+        </div>
+            <script type="text/javascript">
+              var id = 1;
+              //permission
+              hasPermission = function () {
+                cordova.plugins.notification.local.hasPermission(function (granted) {
+                  alert(granted ? 'Yes' : 'No');
+                });
+              };
+              //schedule
+              schedule = function () {
+                cordova.plugins.notification.local.schedule(
+                  {
+                    id: 1,
+                    text: 'Test Message 1',
+                    sound: null,
+                    data: {
+                      test: id
+                    }
+                  });
+              };
+              scheduleMinutely = function () {
+                        var arryAll = [
+            "よくがんばってるね！",
+            "ゼロじゃなければよしとしよう。",
+            "大丈夫、大丈夫。",
+            "顔を上げて深呼吸してみよう。",
+            "だいじょうぶ。だいじょうぶ。",
+            "やまない雨はないよ。",
+            "本当によくがんばっているね。",
+            "一度に一つずつやろう。",
+            "明けない夜はないからね。",
+            "ちゃんとできてるよ。",
+            "何があってもあなたの味方だからね。",
+            "いいね。その調子。",
+            "大丈夫だから、息を吐いてみよう。",
+            "この応援団を自分のために選んであげたんだね。自分以上の応援団はいないものね。",
+            "罪悪感なんて感じる必要ないよ。誰のせいでもない。犯人探しをしても何も解決しないんだから。すべての人がそれぞれの問題に取り組んで生きているだけ。",
+            "問題のない人なんていないらしいよ。問題があるって気が付いただけでもすごいことらしい！すばらしい！",
+            "他の人と比べるより、昨日の自分と比べてみて。",
+            "何のためにそれを始めたの？苦しいならそれは手放してみようか。大丈夫だよ。",
+            "ちょっと休憩して、鏡に向かって笑ってみて。応援団の気持ちだよ。",
+            "人間関係は困難なものだけじゃない。安心できる関係もあるよね。そんな人が現れるまで、じっくり自分をいたわっておいて！",
+            "これだけ大変な思いをしたのだから、次はこれらの経験を活かしていい関係を築けるよ。たくさん学んだよね。",
+            "無理をしなくてもいい関係。そんな人があなたを探しているよ。その人に出会うまではゆっくり心の傷をいやしてね！",
+            "あなたはこれから幸せとリラックスをみんなに届けて！無理と我慢じゃないよ。幸せの笑顔とほっとできる素直で正直な気持ちだよ！",
+            "問題はどんな人間関係でも必ずあるから、あなたが我慢して無理して譲歩したら、それであとはすべてがうまくいくなんてことはないよ。問題が起きるたびに、何度でも正直な気持ちを優しく表現しておこう。とりあえずそれだけは自分の気持ちと幸せのためにやってあげよう。",
+            "どんなネガティブな感情も、湧いてきたなら受け入れてしまいましょうよ。それで駄目になることなんてないはずだから。むしろほっとするかもしれないよ。自分の味方でいましょうね。",
+            "極悪人になる気でなければ「ノー」と言えないのよね。「ノー」と言っても誰も嫌わないし、必要以上にがっかりさせたりしないよ。ちゃんと一緒に理由と気持ちを伝えれば。",
+            "昨日のあなたより今日のあなたは強くて美しいよ！",
+            "おなかにひっこめながら息を吸って3秒間だけ背筋を伸ばしてみよう。",
+            "弱気になったときは10秒だけでいいから好きなかっこいい女優かキャラクターになりきってみて。",
+            "辛いときは自分を抱きしめて、「大好きだよ」「大事だよ」と言ってあげて。",
+            "もしかしたら、あなたが思っているよりあなたは素晴らしい人かもしれないね。可能性はあるよね。自分を客観視するのは難しいから、過小評価してるのかもしれないね。",
+            "自分がどうしたいのかわからなくなるよね。本当の気持ちって何だろうね。我慢しすぎてわからなくなっちゃったね。我慢しなくていいほうへ進もう。そしたら取り戻せるよ。",
+            "誰のこともどうこうしなくていいんだよ。人の問題はその人の問題だから。あなたはただ自分の幸せを追求していいんだよ。それで冷たいなんてことはないの。それが求められていることなの。",
+            "手助けを断ることに罪悪感を感じたら、こんな風に考えてみて。相手を今助けることは、長い目で見たらその人のためにならないし、今の私の課題は心を鬼にして断ること、自己犠牲まで払ってあとで恨まないこと。",
+            "安全だと感じる場所へ行って、安心してぐっすり眠って、起きたらちゃんとした食事をして、好きな本を読もう。100％自分のために。",
+            "あなたが信じるから信用できるようになるのではないよ。信じてもチャンスをあげても信頼できるようになるわけじゃない。信頼できない人を信じようと努力しているだけ。",
+            "ちょっとは自分に優しくしようよ。だらだらする日だって必要だよ。",
+            "何もしない時間を作ろう。そこからパワーと幸せをチャージしよう。自分のためだけの時間を作ろう。",
+            "銀河も太陽系も宇宙の法則に従って存在している。理解できなくてもその宇宙の法則に従ってあなたも存在しているんだから、安心していいよ。",
+            "気持ちのいい布団にくるまって、おいしいものを食べて、きれいな景色を見て、身ぎれいにして、安心して幸せだなぁと感じましょう。",
+            "あなたが変わっても、他人を変えることはできないよ。あなたのことも変えなくていいよ。だってそのままで素晴らしい人だから。状況だけ変えてみよう。"
+            ];
+                var randomNum=Math.random(3)*10;
+                var randomMessage=arryAll[randomNum];
+                alert("設定しました")
+                if(stage==1){
+                  stage1MessageArray[randomNum]
+                }else if(stage==2){
+                  stage2MessageArray[randomNum]
+                }
+
+                //ここまでデータを準備
+                var sound = device.platform == 'Android' ? 'file://sound.mp3' : 'file://beep.caf';
+                cordova.plugins.notification.local.schedule(
+                  {
+                    id: 1,
+                    text: randomMessage,
+                    trigger: { every: 'hour' },
+                    sound: sound
+                  });
+              };
+              //cancel
+              cancelAll = function () {
+                cordova.plugins.notification.local.cancelAll(function () {
+                  alert("設定解除しました");
+                }, this);
+              }
+              //back
+                goBack = function (){
+                    history.back();
+                }
+                </script>
+
+    </ons-page>
+</body>
+</html>

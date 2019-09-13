@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: content: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <script src="components/loader.js"></script>
+    <link rel="stylesheet" href="components/loader.css">
+    <link rel="stylesheet" href="css/onsen-css-components_pink.css">
+    <link rel="stylesheet" href="css/login.css">
+
+    <script>
+    </script>
+</head>
+<body>
+    <ons-page>
+    <div class="page__background" style="background-color: #fff0f5"></div>
+
+        <!-- ツールバー -->
+        <ons-toolbar>
+            <div class="left">
+                <ons-back-button onclick="backTo()">
+                    Back
+                </ons-back-button>            
+            </div>
+            <div class="center">
+                SNS
+            </div>
+        </ons-toolbar>
+        
+        
+        <!-- 中身 -->
+        <h3 class="sns-title">アカウント削除</h3>
+        <div class="login-form">
+            <input type="name" class="text-input--underbar" placeholder="Username" value="">
+            <input type="email" class="text-input--underbar" placeholder="Email" value="">
+            <input type="password" class="text-input--underbar" placeholder="Password" value="">
+            <br><br>
+            <ons-button modifier="large" class="login-button">Delete Account</ons-button>
+        </div>
+
+    
+</ons-page>
+<script>
+    //back
+    backTo = function (){
+        history.back();
+    }
+</script>
+</body>
+</html>

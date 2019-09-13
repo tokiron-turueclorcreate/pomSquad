@@ -1,0 +1,13 @@
+.timeline-li .fa-smile-o,.fa-frown-o {
+    font-size: 100%
+}
+
+.timeline-li .fa-smile-o {
+    color: #ff00ff;
+}
+
+.timeline-li .fa-trash-o {
+    position: absolute;
+    right: 16px;
+    top: 18px;
+    font-size: 140%

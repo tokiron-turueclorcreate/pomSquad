@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: content: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <script src="components/loader.js"></script>
+    <link rel="stylesheet" href="components/loader.css">
+    <link rel="stylesheet" href="css/onsen-css-components_pink.css">
+    <link rel="stylesheet" href="css/login.css">
+    <script src="js/sns_signup.js"></script>
+    <link rel="stylesheet" href="css/sns.css">
+
+</head>
+<body>
+    <ons-page>
+    <div class="page__background" style="background-color: #fff0f5"></div>
+
+        <!-- ツールバー -->
+        <ons-toolbar>
+            <div class="left">
+                <ons-back-button onclick="backTo()">
+                    Back
+                </ons-back-button>            
+            </div>
+            <div class="center">
+                SNS
+            </div>
+        </ons-toolbar>
+        
+        
+        <!-- 中身 -->
+        <h3 class="sns-title">新規登録</h3>
+        <div class="login-form">
+            <input type="email" class="text-input--underbar" id="reg_mailAddress" placeholder="Email" value="">
+            <br><br>
+            <ons-button modifier="large" class="login-button" id="evtarget">Sign Up</ons-button>
+            </div>
+        <section style="padding-left: 10px; padding-right: 20px;">
+            <ul class="sns-note">
+                <li>ユーザー登録は承認制です。</li>
+                <li>合言葉"IloveU"</li>
+                <li>メールが届くまでしばらくお待ちください。</li>
+            </ul>
+        </section>
+        <form name="formA" action="">
+            <div class="sns-note" style="padding-left: 20px; padding-right: 20ps;">
+                <input type="checkbox" id="Checkbox"/>
+                <a href="#" onclick="termsOfUse();">利用規約</a>と<a href="#" onclick="privacyPolicy()">プライバシーポリシー</a>に同意
+            </div>
+        </form>
+    <div id="mask">
+        <div id="loading"><img src="img/loading.gif"></div>
+    </div>
+    
+</ons-page>
+<script>
+    //back
+    backTo = function (){
+        history.back();
+    }
+    
+    //link to termes of use
+    function termsOfUse() {
+        window.open("https://pomsquad.tech/pom-squad-terms-of-use/", '_blank', 'location=yes');
+        return false;
+    }
+    //link to privacy policy
+    function privacyPolicy() {
+        window.open("https://pomsquad.tech/privacy_policy", '_blank', 'location=yes');
+        return false;
+    }
+
+</script>
+</body>
+</html>
